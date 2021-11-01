@@ -13,6 +13,9 @@ public class UIMechanics : MonoBehaviour
     [SerializeField] private TMP_Text _scoreLabel;
     [SerializeField] private GameObject _playmodeMenu;
     [SerializeField] private GameObject _endgameMenu;
+    [SerializeField] private Transform _physicFloor;
+    [SerializeField] private Transform _physicWallLeft;
+    [SerializeField] private Transform _physicWallRight;
 
     void Start()
     {
@@ -81,10 +84,17 @@ public class UIMechanics : MonoBehaviour
             _blockClickPanel.SetActive(false);
             MainMechanic.MainGameplay.StartTimerStatic();
         };
-    }
 
-    static public void RenderEndgameLabel()
-    {
-
+        _mainMenu.PhysicsModeEvent += () =>
+        {
+            Time.timeScale = 1;
+            _playmodeMenu.SetActive(false);
+            _blockClickPanel.SetActive(false);
+            MainMechanic.MainGameplay.StartPhysicsMode();
+            _physicFloor.gameObject.SetActive(true);
+            _scoreLabel.gameObject.SetActive(true);
+            _physicWallLeft.gameObject.SetActive(true);
+            _physicWallRight.gameObject.SetActive(true);
+        };
     }
 }

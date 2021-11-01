@@ -9,6 +9,7 @@ namespace MainMechanic
     public class MainGameplay : MonoBehaviour
     {
         [SerializeField] private Transform _cookie;
+        [SerializeField] private Transform _physicsCookie;
         [SerializeField] private TMP_Text _timeLabel;
         [SerializeField] private GameObject _blockClickPanel;
         [SerializeField] private GameObject _endgameMenu;
@@ -20,6 +21,7 @@ namespace MainMechanic
         private static int _currentCountCookies = 0;
         private static int _maxCookies = 1;
         private static bool _isStart = false;
+        private static bool _isPhysicsMode = false;
 
 
         void Start()
@@ -29,11 +31,23 @@ namespace MainMechanic
 
         void Update()
         {
-            if(_currentCountCookies < _maxCookies)
+            if(Time.timeScale != 0)
             {
-                Vector3 vec = new Vector3(_rand.Next(_minCoordinateX, _maxCoordinateX), _rand.Next(_minCoordinateY, _maxCoordinateY), 1);
-                Transform newCookie = Instantiate(_cookie, vec, Quaternion.identity);
-                _currentCountCookies++;
+                if(_currentCountCookies < _maxCookies)
+                {
+                    if(_isPhysicsMode)
+                    {
+                        Vector3 vec = new Vector3(_rand.Next(_minCoordinateX, _maxCoordinateX), _rand.Next(_minCoordinateY, _maxCoordinateY), 1);
+                        Transform newCookie = Instantiate(_physicsCookie, vec, Quaternion.identity);
+                        _currentCountCookies++;
+                    }
+                    else
+                    {
+                        Vector3 vec = new Vector3(_rand.Next(_minCoordinateX, _maxCoordinateX), _rand.Next(_minCoordinateY, _maxCoordinateY), 1);
+                        Transform newCookie = Instantiate(_cookie, vec, Quaternion.identity);
+                        _currentCountCookies++;
+                    }    
+                }
             }
 
             if (_isStart)
@@ -57,6 +71,11 @@ namespace MainMechanic
         public static void StartTimerStatic()
         {
             _isStart = true;
+        }
+
+        public static void StartPhysicsMode()
+        {
+            _isPhysicsMode = true;
         }
 
         public IEnumerator StartTimer()

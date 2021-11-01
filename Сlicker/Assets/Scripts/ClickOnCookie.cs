@@ -8,9 +8,10 @@ namespace ClickMechanic
 {
     public class ClickOnCookie : MonoBehaviour
     {
-        [SerializeField] private AudioSource  _clickSound;
+        [SerializeField] private AudioSource _clickSound;
         [SerializeField] private TMP_Text _scoreLabel;
         [SerializeField] private GameObject _endgameMenu;
+        [SerializeField] private Transform _clickParticle;
         private int _playerCountCookies = 0;
         private Camera _cam;
         private static bool _endgame = false;
@@ -35,9 +36,13 @@ namespace ClickMechanic
 
                     if(hit)
                     {
-                        _playerCountCookies++;
-                        _clickSound.Play();
-                        MainMechanic.MainGameplay.DestroyCookie(hit.collider.gameObject);
+                        if(hit.collider.gameObject.tag == "Cookie")
+                        {
+                            StartCoroutine(StartParticle(hit.collider.gameObject.transform.position.x, hit.collider.gameObject.transform.position.y));
+                            _playerCountCookies++;
+                            _clickSound.Play();
+                            MainMechanic.MainGameplay.DestroyCookie(hit.collider.gameObject);
+                        }
                     }
                 }
             }
@@ -54,6 +59,16 @@ namespace ClickMechanic
             endgameInfo.text = "Your Score: " + _playerCountCookies;
             _playerCountCookies = 0;
             _endgame = false;
+        }
+
+        private IEnumerator StartParticle(float coordinateX, float coordinateY)
+        {
+            Vector3 vec = new Vector3(coordinateX, coordinateY, 1);
+            Transform newParticle = Instantiate(_clickParticle, vec, Quaternion.identity);
+
+            yield return new WaitForSeconds(1f);
+
+            Destroy(newParticle.gameObject);
         }
 
         public static void EndGameFlagSwitch()

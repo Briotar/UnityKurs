@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public event Action CountCookies15Event;
     public event Action ChoosePlaymodeEvent;
     public event Action TimeModeEvent;
+    public event Action PhysicsModeEvent;
 
     public void OnGameStart()
     {
@@ -62,5 +63,10 @@ public class MainMenu : MonoBehaviour
     public void StartTimeMode()
     {
         TimeModeEvent?.Invoke();
+    }
+
+    public void StartPhysicsMode()
+    {
+        PhysicsModeEvent?.Invoke();
     }
 }
