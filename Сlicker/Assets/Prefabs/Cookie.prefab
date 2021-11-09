@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 6765785731974172730}
   - component: {fileID: 6765785731974172731}
   - component: {fileID: 6765785731974172733}
-  - component: {fileID: 4758967357579572316}
+  - component: {fileID: -724246671000764925}
+  - component: {fileID: 8404709921963759383}
+  - component: {fileID: 5619828519534737552}
   m_Layer: 0
   m_Name: Cookie
   m_TagString: Cookie
@@ -100,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: -0.033059955, y: 0.055947065}
   serializedVersion: 2
   m_Radius: 1.0474238
---- !u!114 &4758967357579572316
+--- !u!114 &-724246671000764925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,6 +111,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 6765785731974172728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 372327b1a3253f54a9b1ffe7996e0a64, type: 3}
+  m_Script: {fileID: 11500000, guid: c9e87c8e23266954082a378988baf62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8404709921963759383
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765785731974172728}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &5619828519534737552
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6765785731974172728}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4fc9b12b1e862244daa4c6197f6b3927, type: 2}
+  m_Animations:
+  - {fileID: 0}
+  - {fileID: 7400000, guid: 4fc9b12b1e862244daa4c6197f6b3927, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
